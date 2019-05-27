@@ -55,7 +55,7 @@ export const ConversationsList = props => {
     return (
         <div>
             <ActionCable 
-                channel={{ channel: "ConversationsChannel"}} 
+                channel={{ channel: "ConversationsChannel", user_id: localStorage.getItem("uidlunes") }}
                 onReceived={handleReceivedConversation} />
             {conversations.length > 0 && <Cable conversations={conversations} handleReceivedMessage={handleReceivedMessage} />} 
 
