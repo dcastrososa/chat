@@ -3,13 +3,14 @@ import './App.css';
 import { withRouter } from "react-router-dom";
 import { LandPage } from './pages/LandPage';
 import { InitiaLoading } from "./components/InitialLoading";
+import TopMenu from "./components/TopMenu";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
 import { UserDAO } from "./common/dao/UserDAO";
 import { getCookie } from './uitl/util';
 
 function App(props) {
-  const { verifySesion, onAuthSuccess } = props;
+  const { verifySesion, onAuthSuccess, user } = props;
 
   const getUser = async () => {
     try {
@@ -29,15 +30,17 @@ function App(props) {
   if (!verifySesion) return <InitiaLoading />
 
   return (
-    <div className="App">
+    <>
+      {user && <TopMenu />}
       <LandPage />
-    </div>
+    </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    verifySesion: state.user.verifySesion
+    verifySesion: state.user.verifySesion,
+    user: state.user.user
   }
 }
 

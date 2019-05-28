@@ -16,4 +16,10 @@ export default class BusinessDAO {
      * @returns {Promise}
      */
     findOne = id => axios.get(`${IP}/${this.collection}/${id}`, { headers: HEADERS });
+
+    /**
+     * @param {object} data
+     * @returns {Promise}
+     */
+    save = data => axios.post(`${IP}/${this.collection}`, data, { headers: HEADERS });
 }
