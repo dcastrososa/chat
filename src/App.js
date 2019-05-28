@@ -5,13 +5,24 @@ import { LandPage } from './pages/LandPage';
 import { InitiaLoading } from "./components/InitialLoading";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
+import { UserDAO } from "./common/dao/UserDAO";
+import { getCookie } from './uitl/util';
 
 function App(props) {
   const { verifySesion, onAuthSuccess } = props;
 
+  const getUser = async () => {
+    try {
+      const response = await UserDAO.findOne(getCookie("iduser"));
+      onAuthSuccess(response.data);
+    } catch (err) {
+      onAuthSuccess(null);
+    }
+  };
+
   useEffect(() => {
     if (!verifySesion) {
-      onAuthSuccess(null);
+      getUser();
     };
   }, []);
 

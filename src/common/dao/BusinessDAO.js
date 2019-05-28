@@ -10,4 +10,10 @@ export default class BusinessDAO {
      * @returns {Promise}
      */
     findAll = () => axios.get(`${IP}/${this.collection}`, { headers: HEADERS });
+
+    /**
+     * @param {Number|String} id
+     * @returns {Promise}
+     */
+    findOne = id => axios.get(`${IP}/${this.collection}/${id}`, { headers: HEADERS });
 }

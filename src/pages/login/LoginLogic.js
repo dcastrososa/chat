@@ -43,6 +43,7 @@ export const useLoginLogic = props => {
             setCookie("client", response.headers["client"], "./myapp");
             setCookie("access-token", response.headers["access-token"], "./myapp");
             setCookie("uid", response.headers["uid"], "./myapp");
+            setCookie("iduser", response.data.data.id);
             setRedirect(true);
         } catch (err) {
             if (err.response.status === 401) {
