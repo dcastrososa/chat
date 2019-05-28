@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { ConversationDAO } from "./../../common/dao/ConversationDAO";
-import { UserDAO } from "./../../common/dao/UserDAO";
+import { ConversationDAO } from "../../common/dao/ConversationDAO";
+import { UserDAO } from "../../common/dao/UserDAO";
 
 const initialState = {
     conversations: [],
@@ -12,7 +12,7 @@ const initialStateUsers = {
     users: []
 };
 
-export const useWallLogic = () => {
+export const useConversationLogic = () => {
     const [ stateConversations, setStateConversations ] = useState(initialState);
     const [ stateUsers, setStateUsers ] = useState(initialStateUsers);
     const [ visibleAddConv, setVisibleAddConv ] = useState(false);

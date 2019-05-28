@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-import { useWallLogic } from "./WallLogic";
+import { useConversationLogic } from "./ConversationsLogic";
 import ConversationItem from "./component/ConversationListItem";
 import Conversation from "./component/Conversation";
 import { ActionCable } from 'react-actioncable-provider';
@@ -12,7 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import AddConversation from "./component/AddConversation";
 
-const WallScreen = props => {
+const ConversationsScreen = props => {
     const { user } = props;
     const { 
         conversations, 
@@ -24,7 +24,7 @@ const WallScreen = props => {
         handleClickConversation,
         handleReceivedMessage,
         loadingConversations
-    } = useWallLogic();
+    } = useConversationLogic();
 
     if (loadingConversations) {
         return <div>cargando...</div>
@@ -72,4 +72,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(WallScreen);
+export default connect(mapStateToProps)(ConversationsScreen);

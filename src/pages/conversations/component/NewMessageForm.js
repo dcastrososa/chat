@@ -1,35 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { IP, HEADERS } from "./../../../system/Config";
+import React, { useState } from "react";
+import { MessageDAO } from "./../../../common/dao/MessageDAO";
 
-export const NewMessageForm = props => {
-    const [ state, setState ] = useState({
-        text: "",
-        conversation_id: props.conversation_id
-    });
+const NewMessageForm = props => {
+    const { conversation_id } = props;
+    const [ value, setValue ] = useState("");
 
-    useEffect(() => {
-        setState({...state, conversation_id: props.conversation_id});
-    }, []);
-
-    const handleChange = e => setState({...state, text: e.target.value });
-
-    const handleSubmit = e => {
+    const sendMessage = async e => {
         e.preventDefault();
+        const message = {
+            conversation_id: conversation_id,
+            text: value
+        };
 
-        //fetch(`${IP}/messages?text=${state.text}&conversation_id=${state.conversation_id}`);
-        fetch(`${IP}/messages`, { method: "POST", headers: HEADERS, body: JSON.stringify(state)})
-        setState({...state, text: ""});
+        try {
+            await MessageDAO.save(message);
+            setValue("");
+        } catch (err) {
+            console.log("err", err)
+        }
     };
 
     return (
-        <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label>New Message</label>
-                <br />
-                <input type="text" value={state.text} onChange={handleChange} />
-                
-                <input type="submit" />
-            </form>
-        </div>
-    );
-}
+        <form onSubmit={sendMessage}>
+            <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+
+            <input type="submit" disabled={!value} />
+        </form>
+    )
+};
+
+export default NewMessageForm;
