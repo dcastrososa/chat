@@ -42,12 +42,19 @@ const ConversationsScreen = props => {
                             </ListItemAvatar>
                             <ListItemText primary="Add Conversation" />
                         </ListItem>
+
+                        {(conversations.length > 0) && conversations.map( conversation => (
+                            <ActionCable
+                                key={`socket-${conversation.id}`}
+                                channel={{ channel: 'MessagesChannel', conversation: conversation.id }}
+                                onReceived={(response) => handleReceivedMessage(response.message, conversation.id)}
+                            />
+                        ))}
                         {conversations.map( conversation => (
                             <ConversationItem 
                                 key={conversation.id} 
                                 conversation={conversation}
-                                onClickItem={handleClickConversation}
-                                handleReceivedMessage={handleReceivedMessage} />
+                                onClickItem={handleClickConversation} />
                         ))}
                     </List>
                 </Grid>
