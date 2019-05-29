@@ -10,7 +10,7 @@ const Conversation = props => {
             <h1>{conversation.user_third.email}</h1>
 
             {messages.map( message => (
-                <div key={message.id}>{message.text}</div>
+                <div key={message.id}><strong>{message.user_send.email}</strong>  {message.text}</div>
             ))}
 
             <NewMessageForm conversation_id={conversation.id} />
