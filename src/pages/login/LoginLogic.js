@@ -37,13 +37,12 @@ export const useLoginLogic = props => {
 
         try {
             const response = await UserDAO.login(values);
-
-            onAuthSuccess(response.data.data);
             const setCookie = (name, value, path) => document.cookie = `${name}=${value};path=${path}`;
             setCookie("client", response.headers["client"], "./myapp");
             setCookie("access-token", response.headers["access-token"], "./myapp");
             setCookie("uid", response.headers["uid"], "./myapp");
             setCookie("iduser", response.data.data.id);
+            onAuthSuccess(response.data.data);
             setRedirect(true);
         } catch (err) {
             if (err.response.status === 401) {

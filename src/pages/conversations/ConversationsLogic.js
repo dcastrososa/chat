@@ -56,6 +56,7 @@ export const useConversationLogic = () => {
      * @param {object} response
      */
     const handleReceivedConversation = response => {
+        console.log("se ha creado una conversacion")
         const { conversation } = response;
         const conversations = [...stateConversations.conversations];
         conversations.unshift(conversation);
@@ -63,6 +64,7 @@ export const useConversationLogic = () => {
     };
 
     const handleReceivedMessage = (message, conversation_id) => {
+        console.log("nuevo mensaje recibido...............")
         const conversations = [...stateConversations.conversations];
         const index = conversations.findIndex( con => con.id === conversation_id );
         const conversation = conversations[index];
