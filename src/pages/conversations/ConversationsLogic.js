@@ -31,7 +31,7 @@ export const useConversationLogic = () => {
             });
             setConversationActive(response.data[0]);
         } catch (err) {
-            console.log("err", err)
+            throw err;
         }
     };
 
@@ -47,7 +47,7 @@ export const useConversationLogic = () => {
                 loadingUsers: false
             })
         } catch (err) {
-            console.log("err", err)
+            throw err;
         }
     };
 

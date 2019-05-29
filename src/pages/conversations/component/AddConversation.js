@@ -27,7 +27,7 @@ const AddConversation = props => {
           await ConversationDAO.save(conversation);
           handleClose();
         } catch (err) {
-            console.log("err")
+            throw err;
         }
     };
 

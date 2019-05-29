@@ -16,7 +16,7 @@ const NewMessageForm = props => {
             await MessageDAO.save(message);
             setValue("");
         } catch (err) {
-            console.log("err", err)
+            throw err;
         }
     };
 
