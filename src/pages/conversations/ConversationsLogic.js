@@ -40,10 +40,10 @@ export const useConversationLogic = () => {
      */
     const getUsers = async () => {
         try {
-            const response = await UserDAO.findAll();
+            const response = await ConversationDAO.usersForNewConversations();
             setStateUsers({
                 ...stateUsers,
-                users: response.data,
+                users: response.data.data,
                 loadingUsers: false
             })
         } catch (err) {
