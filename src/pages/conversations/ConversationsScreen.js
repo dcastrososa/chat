@@ -11,6 +11,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import AddConversation from "./component/AddConversation";
+import Icon from '@material-ui/core/Icon';
 
 const ConversationsScreen = props => {
     const { user } = props;
@@ -36,7 +37,9 @@ const ConversationsScreen = props => {
                 <Grid item xs={3}>
                     <List>
                         <ListItem onClick={() => handleVisibilityAddConv()}>
-                            <ListItemAvatar><Avatar /></ListItemAvatar>
+                            <ListItemAvatar>
+                                <Icon color="primary" style={{fontSize: "41px"}}>add_circle</Icon>
+                            </ListItemAvatar>
                             <ListItemText primary="Add Conversation" />
                         </ListItem>
                         {conversations.map( conversation => (
