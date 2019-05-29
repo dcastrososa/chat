@@ -7,6 +7,10 @@ class ConversationDAORaw extends BusinessDAO {
         super("conversations");
     };
 
+    /**
+     * List of Users for new conversations of user loggued
+     * @returns {Promise}
+     */
     usersForNewConversations = () => axios.get(`${IP}/${this.collection}/users/new`, { headers: HEADERS });
 }
 
